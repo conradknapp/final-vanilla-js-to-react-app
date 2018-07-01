@@ -3,7 +3,9 @@ import axios from "axios";
 const API_URL = "https://api.github.com/users";
 
 class Form {
-  constructor() {
+  constructor(addCard) {
+    this.addCard = addCard;
+
     this.API_URL = "";
     this.searchTerm = "";
 
@@ -25,7 +27,7 @@ class Form {
     event.preventDefault();
     axios
       .get(this.API_URL)
-      .then(({ data }) => console.log(data))
+      .then(({ data }) => this.addCard(data))
       .catch(err => console.error("Promise rejected!", err));
     this.form.reset();
   }
