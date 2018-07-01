@@ -15,6 +15,7 @@ class App {
   clearCards() {
     this.cards = [];
     CardList(this.cards);
+    localStorage.setItem("users", "");
   }
   getCards() {
     if (localStorage.getItem("users")) {
