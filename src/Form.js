@@ -28,8 +28,18 @@ class Form {
     axios
       .get(this.API_URL)
       .then(({ data }) => this.addCard(data))
-      .catch(err => console.error("Promise rejected!", err));
+      .catch(err => this.formatError("Promise rejected!", err));
     this.form.reset();
+  }
+  formatError(err) {
+    console.error(err);
+    const errorText = document.createElement("p");
+    errorText.style.color = "red";
+    errorText.style.fontSize = "1.5em";
+    errorText.style.fontStyle = "bold";
+    errorText.innerText = "No user found";
+    this.form.appendChild(errorText);
+    setTimeout(() => this.form.removeChild(errorText), 5000);
   }
 }
 
